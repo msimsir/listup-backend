@@ -4,6 +4,8 @@ import cors from "cors";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 
+import taskRoutes from "./routes/tasks.js";
+
 const app = express();
 
 dotenv.config();
@@ -13,9 +15,7 @@ app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-  res.send("THIS WORKS");
-});
+app.use("/tasks", taskRoutes);
 
 mongoose
   .connect(process.env.CONNECTION_URL, {
