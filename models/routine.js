@@ -17,7 +17,7 @@ const routineSchema = new mongoose.Schema({
   createdDate: { type: Date, default: formatDate(new Date()) },
   startDate: { type: Date, default: createdDate },
   endDate: { type: Date },
-  listRef: { type: mongoose.Schema.Types.ObjectId, ref: "List", required: false },
+  list: { type: mongoose.Schema.Types.ObjectId, ref: "List", required: false },
 });
 
 const Routine = mongoose.model("Routine", routineSchema);

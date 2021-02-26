@@ -7,7 +7,7 @@ const subTaskSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  taskRef: { type: mongoose.Schema.Types.ObjectId, ref: "Task" },
+  task: { type: mongoose.Schema.Types.ObjectId, ref: "Task" },
   status: { type: Boolean, default: false },
 });
 
