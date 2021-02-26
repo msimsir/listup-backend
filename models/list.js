@@ -5,6 +5,12 @@ const listSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  tasks: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "Task", required: false },
+  ],
+  routines: [
+    { type: mongoose.Schema.Types.ObjectId, ref: "Routine", required: false },
+  ],
   owner: {
     type: String,
   },
