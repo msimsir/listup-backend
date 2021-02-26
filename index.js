@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 
 import taskRoutes from "./routes/tasks.js";
+import listRoutes from "./routes/lists.js";
+import tagRoutes from "./routes/tags.js";
 
 const app = express();
 
@@ -15,7 +17,12 @@ app.use(cors());
 
 const PORT = process.env.PORT || 5000;
 
+// Routes
 app.use("/tasks", taskRoutes);
+app.use("/lists", listRoutes);
+app.use("/tags", tagRoutes);
+
+
 
 mongoose
   .connect(process.env.CONNECTION_URL, {
