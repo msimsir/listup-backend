@@ -11,9 +11,10 @@ const taskSchema = new mongoose.Schema({
     default: false,
   },
   subtasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "SubTask" }],
-  listRef: { type: mongoose.Schema.Types.ObjectId, ref: "List" },
+  list: { type: mongoose.Schema.Types.ObjectId, ref: "List" },
   tags: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }],
   endDate: { type: Date },
+  trashStatus: { type: Boolean, default: false },
 });
 
 const Task = mongoose.model("Task", taskSchema);
