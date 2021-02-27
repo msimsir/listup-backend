@@ -48,8 +48,8 @@ export const deleteTask = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(_id)) {
       res.status(404).json({ message: "No task with that id" });
     }
-    await Task.findByIdAndRemove(_id);
-    res.status(200).json({ message: "Task deleted successfully" });
+    const deletedTask = await Task.findByIdAndRemove(_id);
+    res.status(200).json(deletedTask);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
