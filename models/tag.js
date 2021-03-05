@@ -6,8 +6,8 @@ const tagSchema = new mongoose.Schema({
     required: true,
   },
   priorityLevel: {
-    type: Number,
-    default: 1,
+    type: String,
+    default: "Low",
   },
 });
 

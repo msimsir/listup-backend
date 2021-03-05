@@ -3,7 +3,6 @@ import formatDate from "../utils/formatDate.js";
 
 const taskSchema = new mongoose.Schema({
   title: { type: String, required: true },
-  description: { type: String },
   createdDate: { type: Date, default: formatDate(new Date()) },
   timeTag: { type: String, required: true },
   status: {
