@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import Task from "../models/task.js";
+import List from "../models/list.js";
 
 export const getTasks = async (req, res) => {
   try {
@@ -11,10 +12,39 @@ export const getTasks = async (req, res) => {
 };
 
 export const createTask = async (req, res) => {
-  const task = req.body;
-  const newTask = new Task(task);
+  const {
+    title,
+    createdDate,
+    timeTag,
+    status,
+    subtasks,
+    list,
+    tags,
+    endDate,
+    trashStatus,
+  } = req.body;
+
   try {
+    const newTask = await Task.create({
+      title,
+      createdDate,
+      timeTag,
+      status,
+      subtasks,
+      list,
+      tags,
+      endDate,
+      trashStatus,
+    });
     await newTask.save();
+    
+    if (list !== null) {
+      const listById = await List.findById(list);
+
+      listById.tasks.push(newTask);
+      await listById.save();
+    }
+
     res.status(201).json(newTask);
   } catch (error) {
     res.status(409).json({ message: error.message });
