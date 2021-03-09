@@ -37,7 +37,7 @@ export const createTask = async (req, res) => {
       trashStatus,
     });
     await newTask.save();
-    
+
     if (list !== null) {
       const listById = await List.findById(list);
 
@@ -74,9 +74,16 @@ export const updateTask = async (req, res) => {
 
 export const deleteTask = async (req, res) => {
   const { id: _id } = req.params;
+
   try {
     if (!mongoose.Types.ObjectId.isValid(_id)) {
       res.status(404).json({ message: "No task with that id" });
+    }
+
+    const taskOnList = await List.findOne({ tasks: [_id] });
+    if (taskOnList !== null) {
+      await taskOnList.tasks.pull(_id).remove();
+      taskOnList.save();
     }
     const deletedTask = await Task.findByIdAndRemove(_id);
     res.status(200).json(deletedTask);
