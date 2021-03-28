@@ -44,8 +44,8 @@ export const deleteList = async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(_id)) {
       res.status(404).json({ message: "No list with that id" });
     }
-    await List.findByIdAndRemove(_id);
-    res.status(200).json({ message: "List deleted successfully" });
+    const deletedList = await List.findByIdAndRemove(_id);
+    res.status(200).json(deletedList);
   } catch (error) {
     res.status(409).json({ message: error.message });
   }
