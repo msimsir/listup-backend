@@ -7,7 +7,7 @@ import mongoose from "mongoose";
 import taskRoutes from "./routes/tasks.js";
 import listRoutes from "./routes/lists.js";
 import tagRoutes from "./routes/tags.js";
-
+import subTaskRoutes from "./routes/subTasks.js";
 const app = express();
 
 dotenv.config();
@@ -21,8 +21,7 @@ const PORT = process.env.PORT || 5000;
 app.use("/tasks", taskRoutes);
 app.use("/lists", listRoutes);
 app.use("/tags", tagRoutes);
-
-
+app.use("/subtasks", subTaskRoutes);
 
 mongoose
   .connect(process.env.CONNECTION_URL, {

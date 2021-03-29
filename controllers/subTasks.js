@@ -12,8 +12,8 @@ export const getSubTasks = async (req, res) => {
 };
 
 export const createSubTask = async (req, res) => {
-  const subTask = req.body;
-  const newSubTask = new SubTask(subTask);
+  const { title, status } = req.body;
+  const newSubTask = new SubTask({ title, status });
   try {
     await newSubTask.save();
     res.status(201).json(newSubTask);
