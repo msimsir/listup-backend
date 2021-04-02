@@ -9,7 +9,7 @@ const taskSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  subtasks: [{ type: mongoose.Schema.Types.ObjectId, ref: "SubTask" }],
+  subtasks: [],
   list: { type: mongoose.Schema.Types.ObjectId, ref: "List" },
   tags: [{ type: mongoose.Schema.Types.ObjectId, ref: "Tag" }],
   endDate: { type: Date },
